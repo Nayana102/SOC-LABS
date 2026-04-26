@@ -1,33 +1,35 @@
-🛡️Soc Lab : End-to-End SSH Brute Force Detection & Analysis
+ 🛡️ Soc Lab :  SSH Brute Force Detection
 
-Lab Objective
- To build a complete security pipeline that captures, forwards, and analyzes brute force authentication attacks from a Windows host to a Linux target.
+## Lab Objective
+To build a functional SOC environment that captures a cross-platform attack. This lab demonstrates the integration of Linux logging, rsyslog forwarding, and Wazuh XDR analysis.
 
-Technical Environment
- *Victim Machine: Kali Linux v2025.4 (VMware)
- *Attacker Machine: Windows 10 Host (PowerShell)
- *Monitoring Tools: Wazuh Manager v4.7.5 
- *Protocols: SSH, Rsyslog (Port 514)
+##  Technical Stack & Configuration
+* *Attacker:* Windows 10 Host (Attacking via *PowerShell*).
+* *Victim:* Kali Linux v2025.4 (Running in *VMware Workstation*).
+* *Networking:* Configured *Bridged Networking* to allow cross-OS communication.
+* *Log Pipeline:* rsyslog configured to monitor and forward /var/log/auth.log.
+* *SIEM/XDR:* *Wazuh Manager & Dashboard* v4.7.5.
 
-Implementation Steps
-1. *Service Configuration: Installed and verified the *Wazuh Manager* service on Kali Linux to monitor system integrity.
-2. *Log Forwarding: Configured *rsyslog* on the Kali VM to forward auth logs to the SIEM.
-3. *Network Bridging: Configured VMware networking to allow communication between the Windows Host and the Kali Guest.
-4. *The Attack: Simulated a brute force credential attack using a PowerShell script targeting the Kali SSH port (22).
-5. *Detection: Analyzed the generated "Failed password" events in Splunk and monitored service status via Wazuh.
+##  Lab Execution Phases
+1. *Infrastructure Setup:* Configured *VMware Bridged Adapter* and verified connectivity between Windows (Attacker) and Kali (Victim).
+2. *Log Centralization:* Enabled and configured *rsyslog* on Kali Linux to ensure all authentication events were captured.
+3. *Wazuh Service Management:* Used the terminal to start and verify the wazuh-manager service to ensure the ruleset (Rule 5712) was active.
+4. *The Attack:* Executed a persistent SSH brute force attack from the *Windows PowerShell* terminal targeting the Kali IP.
+5. *Detection & Visualization:* Observed the real-time alert generation in the *Wazuh Dashboard*, successfully identifying the malicious IP and the "sshd: brute force" pattern.
 
- Lab Evidence
-### 1. Wazuh Manager Status
+##  Lab Evidence
+
+### 1. Attack Execution (Windows PowerShell)
+![PowerShell Attack Log](powershell_attack_log.png)
+Evidence of the brute force script running from the host machine.
+
+### 2. Backend Management (Wazuh & Rsyslog)
 ![Wazuh Service Management](wazuh_service_config.png)
-Managing the Wazuh manager service during the detection phase.
+Terminal status showing the Wazuh and rsyslog services running on the Kali target.
 
-### 2. Attack Execution
-![PowerShell Brute Force](powershell_attack_log.png)
-Logs from the Windows host showing the high-frequency login attempts.
+### 3. XDR Alert (Wazuh Dashboard)
+![Wazuh Detection Dashboard](wazuh_detection_config.png)
+The final alert: Rule 5712 triggering a high-level security event for the detected attack.
 
-### 3. Splunk Visualization
-![Brute Force Dashboard](splunk_brute_force_dashboard.png)
-Final SOC dashboard showing the attacker's IP and total failed attempt count.
-
-## Conclusion
-This lab demonstrates how to bridge Windows and Linux environments for security monitoring. It highlights the importance of centralizing logs via rsyslog to ensure that even if a local log is cleared, the SOC team has a record in the SIEM.
+##  Conclusion
+This lab highlights the importance of *log visibility*. By configuring rsyslog and a bridged network, I successfully created a pipeline that moved raw attack data from a Linux endpoint to a Wazuh XDR dashboard for immediate SOC analysis.
