@@ -27,7 +27,7 @@ I conducted a hunt for URL-encoded attack signatures such as %27 (single quote) 
 
  4. Security Governance & Audit
 To maintain environment hygiene, I created a dedicated remover account with can_delete capabilities. This mirrors professional SOC workflows by separating administrative duties from destructive actions.
-![Users Screenshot](users_proof.png)
+![Users Screenshot](user_proof.png)
 
 
  Conclusion
