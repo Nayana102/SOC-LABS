@@ -80,7 +80,7 @@ During this lab, I compared a legitimate personal email with the confirmed Phish
 
 * Comparison Evidence: Personal Email with DMARC Non-Compliance
   
-![DMARC Non-Compliant Personal Email](./dmarc_comparison_personal.png)
+![DMARC Non-Compliant Personal Email](./dmarc_comparision_personal.png)
 
 * *The Personal Email Result (DMARC NON-COMPLIANT):* In contrast, a personal email often shows a *Red X* for DMARC compliance. This is usually because individual users or small private domains haven't published a formal DMARC policy in their DNS records.
 * *Key Lesson:* A *DMARC PASS* is a technical verification of the sender's identity, but it is *not* a certificate of safety. A "Perfect" score on a suspicious banking email is actually a red flag indicating a professional, well-funded campaign.
