@@ -56,7 +56,7 @@ Following the *NIST SP 800-61* standard, the following actions were simulated:
 
 ### 1. Phishing Detection & Header Summary
 
-![Phishing Email](./phishing_eamil.png)
+![Phishing Email](./phishing_email.png)
 ![Gmail Header Summary](./email_header.png)
 
 ### 2. Authentication & Relay Hop Results
