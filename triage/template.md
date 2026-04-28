@@ -20,5 +20,5 @@ This playbook outlines the 5-step investigative logic I follow for every securit
 - *High/Critical:* Successful unauthorized access, malware execution, or targeting of sensitive (Finance/Admin) assets.
 
 ### *5. Action & Escalation*
-- Remediate via IP shunning or account lockout.
+- Remediate via IP blocking, account lockout or close the ticket.
 - Escalate to L2 with technical logs and a "Disposition" summary.
